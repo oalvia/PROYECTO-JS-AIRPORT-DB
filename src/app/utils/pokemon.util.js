@@ -1,6 +1,6 @@
 
 class PokemonUtil {
-  constructor() {}
+  constructor() { }
   static pokemonLevel(level) {
     let levelPokemon;
     if (typeof level === 'number') {

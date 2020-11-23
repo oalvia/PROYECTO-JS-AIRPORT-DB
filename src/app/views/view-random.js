@@ -6,8 +6,14 @@ const displayPokemonRandom = async () => {
   const pokedex = document.getElementById('pokedex');
   const pokeId = Math.round(Math.random() * (150 - 1) + 1);
   const pokemon = await fetchPokemonDetail(pokeId);
-  const myPokemonClass = new PokemonRandomizer(pokemon.id, pokemon.name, pokemon.image, pokemon.type, pokemon.baseExperience);
-  let level = PokemonUtil.pokemonLevel(pokemon.baseExperience);
+  const myPokemonClass = new PokemonRandomizer(
+    pokemon.id,
+    pokemon.name,
+    pokemon.image,
+    pokemon.type,
+    pokemon.baseExperience
+  );
+  const level = PokemonUtil.pokemonLevel(pokemon.baseExperience);
 
   const pokemonHTMLString =
     `<li class="flex-item">
