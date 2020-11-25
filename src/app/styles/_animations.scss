@@ -1,5 +1,5 @@
 
-
+// Pokeballs
 @-webkit-keyframes shak {
 
   0%,
@@ -39,5 +39,22 @@
 
   100% {
     transform: translateY(0);
+  }
+}
+
+// Loader
+.u-flash {
+  animation: flash 3000ms infinite;
+}
+.loader {
+  position: fixed;
+  z-index: 1;
+  background: rgba(6, 45, 32, 0.4);
+  height: 100%;
+  width: 100%;
+
+  .pokeball {
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
   }
 }

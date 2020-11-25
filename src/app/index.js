@@ -8,7 +8,7 @@ function addListeners() {
   document.getElementById('allPokemons').addEventListener('click', displayPokemonList);
   document.getElementById('pokeFinder').addEventListener('click', displayPokemonDetail);
   document.getElementById('randomPokemon').addEventListener('click', displayPokemonRandom);
-  window.onscroll = handleScroll;
+  document.querySelector('body').onscroll = handleScroll;
 }
 
 window.onload = function () {

@@ -18,6 +18,10 @@ class PokemonUtil {
     }
     return levelPokemon;
   }
+
+  static togglePokeLoader() {
+    document.getElementById('loader').classList.toggle('is-hidden');
+  }
 }
 
 export { PokemonUtil };

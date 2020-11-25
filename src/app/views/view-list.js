@@ -2,8 +2,11 @@ import { fetchPokemonList } from '../api/call-to-api-list';
 
 let offset = 0;
 
-const displayPokemonList = (offset = 0) => {
+const displayPokemonList = (event, offset = 0) => {
   const pokedex = document.getElementById('pokedex');
+  if (offset === 0) {
+    pokedex.innerHTML = ''; // clean content
+  }
   const pokemon = fetchPokemonList(offset);
 
   pokemon.then((pokemons) => {
@@ -23,11 +26,11 @@ const displayPokemonList = (offset = 0) => {
   });
 };
 
-const handleScroll = () => {
-  if (window.scrollY == document.querySelector('body').scrollHeight - window.innerHeight) {
+const handleScroll = (event) => {
+  if (Math.ceil(window.scrollY) == Math.ceil(document.querySelector('body').scrollHeight - window.innerHeight)) {
+    offset += 30;
     if (document.getElementById('pokedex').childElementCount > 1 && offset < 150) {
-      offset += 30;
-      displayPokemonList(offset);
+      displayPokemonList(event, offset);
     }
   }
 }

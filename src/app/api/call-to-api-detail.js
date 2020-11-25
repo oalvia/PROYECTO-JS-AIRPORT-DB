@@ -1,5 +1,7 @@
+import { PokemonUtil } from '../utils/pokemon.util';
 
 const fetchPokemonDetail = async (pokeName) => {
+  PokemonUtil.togglePokeLoader();
   const url = `https://pokeapi.co/api/v2/pokemon/${pokeName}/`;
   const res = await fetch(url)
     .catch((error) => {
@@ -20,8 +22,9 @@ const fetchPokemonDetail = async (pokeName) => {
     type: data.types.map((type) => type.type.name).join(", "),
     id: data.id,
     attack: data,
-    baseExperience:data.base_experience,
+    baseExperience: data.base_experience,
   };
+  PokemonUtil.togglePokeLoader();
 
   return pokemon;
 };

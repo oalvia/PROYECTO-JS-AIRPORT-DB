@@ -6,6 +6,10 @@
   box-sizing: border-box;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -127,4 +131,8 @@ body {
   border-radius: 10px;
   background-color: #015948;
   color: $white;
+}
+
+.is-hidden {
+  display: none;
 }

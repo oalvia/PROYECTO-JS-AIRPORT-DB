@@ -1,5 +1,7 @@
+import { PokemonUtil } from '../utils/pokemon.util';
 
 const fetchPokemonList = async (offset) => {
+  PokemonUtil.togglePokeLoader();
   const url = `https://pokeapi.co/api/v2/pokemon?limit=30&offset=${offset}`;
   const res = await fetch(url)
     .catch((error) => {
@@ -17,6 +19,7 @@ const fetchPokemonList = async (offset) => {
   const getIdFromUrl = (url) => url.split('/').slice(-2).join('');
 
   const pokemonList = data.map(({ name, url }) => ({ name, id: getIdFromUrl(url) }));
+  PokemonUtil.togglePokeLoader();
 
   return pokemonList;
 };
