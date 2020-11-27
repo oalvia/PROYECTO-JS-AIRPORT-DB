@@ -3,7 +3,7 @@ import { PokemonDetailClass } from '../models/pokemon';
 
 const displayPokemonDetail = async () => {
   const pokedex = document.getElementById('pokedex');
-  const pokeName = await document.getElementById('pokeName').value;
+  const pokeName = document.getElementById('pokeName').value;
   const pokemon = await fetchPokemonDetail(pokeName);
   const pokemonDetail = new PokemonDetailClass(
     pokemon.id,

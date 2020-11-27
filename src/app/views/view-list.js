@@ -1,16 +1,16 @@
 import { fetchPokemonList } from '../api/call-to-api-list';
 
-let offset = 0;
+let offset;
 
 const displayPokemonList = (event, offset = 0) => {
   const pokedex = document.getElementById('pokedex');
   if (offset === 0) {
     pokedex.innerHTML = ''; // clean content
   }
-  const pokemon = fetchPokemonList(offset);
+  const pokemonListPromise = fetchPokemonList(offset);
 
-  pokemon.then((pokemons) => {
-    pokemons.forEach((pokemon) => {
+  pokemonListPromise.then((pokemonList) => {
+    pokemonList.forEach((pokemon) => {
       const li = document.createElement('li');
       li.id = pokemon.id;
       li.classList.add('flex-item');

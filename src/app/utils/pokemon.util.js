@@ -22,6 +22,14 @@ class PokemonUtil {
   static togglePokeLoader() {
     document.getElementById('loader').classList.toggle('is-hidden');
   }
+
+  static handleError(error) {
+    const pokemonHTMLString =
+      `<div class="flex-item">
+        <p class="flex-item-error">Error: Hubo un problema con la petición Fetch: ${error.message}</p>
+      </div>`;
+    document.getElementById('pokedex').innerHTML = pokemonHTMLString;
+  }
 }
 
 export { PokemonUtil };
