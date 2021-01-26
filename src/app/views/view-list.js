@@ -1,6 +1,6 @@
 import { fetchPokemonList } from '../api/call-to-api-list';
 
-let offset;
+let offset = 0;
 
 const displayPokemonList = (event, offset = 0) => {
   const pokedex = document.getElementById('pokedex');
