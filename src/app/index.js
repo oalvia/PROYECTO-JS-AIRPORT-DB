@@ -4,13 +4,13 @@ import { displayPokemonRandom } from './views/view-random';
 import './styles/styles.scss';
 import 'bootstrap';
 
-function addListeners() {
+const addListeners = () => {
   document.getElementById('allPokemons').addEventListener('click', displayPokemonList);
   document.getElementById('pokeFinder').addEventListener('click', displayPokemonDetail);
   document.getElementById('randomPokemon').addEventListener('click', displayPokemonRandom);
   document.querySelector('body').onscroll = handleScroll;
 }
 
-window.onload = function () {
+window.onload = () => {
   addListeners();
 };
