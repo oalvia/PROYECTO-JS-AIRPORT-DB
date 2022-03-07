@@ -5,33 +5,32 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
+  mode: 'development',
   entry: {
     app: ['@babel/polyfill', './src/app/index.js'],
   },
   output: {
     path: path.resolve(__dirname, 'build'),
     filename: 'js/app.bundle.js',
+    assetModuleFilename: "assets/[name][ext]",
   },
   devServer: {
     port: 4000,
+    watchFiles: ['src/index.html']
   },
   module: {
     rules: [
-      {
-        test: /.(jpg|jpeg|png|svg)$/,
-        use: ['file-loader'],
-      },
       {
         test: /\.js$/,
         loader: 'babel-loader',
       },
       {
-        test: /\.scss$/,
-        loader: [
-          MiniCssExtractPlugin.loader,
-          "css-loader?url=false",
-          'sass-loader'
-        ]
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
       },
     ],
   },
@@ -56,8 +55,8 @@ module.exports = {
       ],
     }),
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
+      $: 'jquery',
+      jQuery: 'jquery',
       Popper: ['popper.js', 'default']
     })
   ],

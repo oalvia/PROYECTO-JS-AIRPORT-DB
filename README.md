@@ -31,7 +31,7 @@ Una vez comprendido el funcionamiento de una API y como consumir recursos de una
 Para arrancar el `webpack-dev-server`:
 ```sh
 npm install
-npm run dev
+npm start
 ```
 
 Para arrancar el `json-server` desde `/backend`:
