@@ -1,33 +1,51 @@
-import { fetchPokemonDetail } from '../api/call-to-api-detail';
-import { PokemonDetailClass } from '../models/pokemon';
+"use strict";
+import { AirportDetailClass } from "../models/models.js";
+import { displayAirportList } from "../views/view-list.js";
+import { backToAirportList } from "../utils/back_to_main.js";
 
-const displayPokemonDetail = async () => {
-  const pokedex = document.getElementById('pokedex');
-  const pokeName = document.getElementById('pokeName').value;
-  const pokemon = await fetchPokemonDetail(pokeName);
-  const pokemonDetail = new PokemonDetailClass(
-    pokemon.id,
-    pokemon.name,
-    pokemon.image,
-    pokemon.type,
-    pokemon.attack
-  );
-  const pokeAttacks = pokemonDetail.getPokemonAttacks();
-  let attacksStrings = '';
+const displayAirportDetail = async (airportData, current_page) => {
+  const infoContainer = document.getElementById("infoContainer");
+  infoContainer.innerHTML = "";
 
-  for (let i = 0; i < pokeAttacks.abilities.length; i++) {
-    attacksStrings += `<div>${i} - ${pokeAttacks.abilities[i].ability.name}</div>`;
-  }
+  const searchFind = document
+    .getElementById("search-wrapper")
+    .setAttribute("class", "is-hidden");
 
-  const pokemonHTMLString =
-    `<li class="flex-item">
-      <img class="flex-item-image" src="${pokemonDetail.getPokemonImg()}"/>
-      <h2 class="flex-item-title">${pokemonDetail.getPokemonId()}. ${pokemonDetail.getPokemonName()}</h2>
-      <p class="flex-item-subtitle">Type: ${pokemonDetail.getPokemonType()}</p>
-      <h2 class="flex-item-title"> Attacks:</h2>
-      <p class="flex-item-subtitle">${attacksStrings}</p>
+  const airportDetail = new AirportDetailClass(airportData);
+
+  const airportHTMLstring = `<li class="dataElement">
+    <h3 class="flex-item-subtitle"> icao_code:  ${airportDetail.getIcao_code()}</h3>
+    <h3 class="flex-item-subtitle"> name: ${airportDetail.getName()}</h3>
+    <h3 class="flex-item-subtitle"> city: ${airportDetail.getCity()}</h3>
+    <h3 class="flex-item-subtitle"> state:  ${airportDetail.getState()}</h3>
+    <h3 class="flex-item-subtitle"> ownership:  ${airportDetail.getOwnership()}</h3>
+    <h3 class="flex-item-subtitle"> latitude: ${airportDetail.getLatitude()}</h3>
+    <h3 class="flex-item-subtitle"> longitude:  ${airportDetail.getLongitude()}</h3>
+    <h3 class="flex-item-subtitle"> elevation:  ${airportDetail.getElevation()}</h3>
+    <h3 class="flex-item-subtitle"> magnetic_variation: ${airportDetail.getMagnetic_variation()}</h3>
+    <h3 class="flex-item-subtitle"> tpa:  ${airportDetail.getTpa()}</h3>
+    <h3 class="flex-item-subtitle"> vfr_sectional:  ${airportDetail.getVfr_sectional()}</h3>
+    <h3 class="flex-item-subtitle"> artcc_code: ${airportDetail.getArtcc_code()}</h3>
+    <h3 class="flex-item-subtitle"> artcc_name: ${airportDetail.getArtcc_name()}</h3>
+    <h3 class="flex-item-subtitle"> airport_status: ${airportDetail.getAirport_status()}</h3>
+    <h3 class="flex-item-subtitle"> customs_airport_of_entry: ${airportDetail.getCustoms_airport_of_entry()}</h3>
+    <h3 class="flex-item-subtitle"> control_tower:  ${airportDetail.getControl_tower()}</h3>
+    <h3 class="flex-item-subtitle"> unicom: ${airportDetail.getUnicom()}</h3>
+    <h3 class="flex-item-subtitle"> ctaf: ${airportDetail.getCtaf()}</h3>
+    <h3 class="flex-item-subtitle"> lighting_schedule:  ${airportDetail.getLighting_schedule()}</h3>
+    <h3 class="flex-item-subtitle"> beacon_schedule:  ${airportDetail.getBeacon_schedule()}</h3>
+    <h3 class="flex-item-subtitle"> military_joint_use: ${airportDetail.getMilitary_joint_use()}</h3>
+    <h3 class="flex-item-subtitle"> military_landing: ${airportDetail.getMilitary_landing()}</h3>
+    <h3 class="flex-item-subtitle"> fss_phone_number: ${airportDetail.getFss_phone_number()}</h3>
+    <h3 class="flex-item-subtitle"> fss_phone_number: ${airportDetail.getFss_area_map()}</h3>
     </li>`;
-  pokedex.innerHTML = pokemonHTMLString;
-};
 
-export { displayPokemonDetail };
+  infoContainer.innerHTML = airportHTMLstring;
+  
+
+  const allAirports = document.getElementById("allAirports");
+  allAirports.removeAttribute("class", "is-hidden");
+
+  backToAirportList(current_page);
+};
+export { displayAirportDetail };
